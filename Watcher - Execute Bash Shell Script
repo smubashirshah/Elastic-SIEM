@@ -1,0 +1,47 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "30m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "search_type": "query_then_fetch",
+        "indices": [
+          "auditbeat-7.5.0-2019.12.08-000001"
+        ],
+        "rest_total_hits_as_int": true,
+        "body": {
+          "size": 0,
+          "query": {
+            "match": {
+              "process.args": "sh, /tmp/mat.sh:"
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.hits.total": {
+        "gte": 5
+      }
+    }
+  },
+  "actions": {
+    "send_email": {
+      "email": {
+        "profile": "standard",
+        "to": [
+          "youremail@domain.com"
+        ],
+        "subject": "Mitre ALert Test",
+        "body": {
+          "text": "Execute Bash Shell Script"
+        }
+      }
+    }
+  }
+}
