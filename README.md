@@ -59,3 +59,19 @@ sudo ./auditbeat -e
 Storing and enriching alerts for information security with Elasticsearch
 
 https://www.elastic.co/blog/storing-and-enriching-alerts-for-information-security-with-elasticsearch
+
+
+Atomic Red Team -- T1064 - Scripting
+
+Atomic Test #1 - Create and Execute Bash Shell Script
+Creates and executes a simple bash script.
+
+Supported Platforms: macOS, Linux
+
+Run it with sh!
+sh -c "echo 'echo Hello from the Atomic Red Team' > /tmp/art.sh"
+sh -c "echo 'ping -c 4 8.8.8.8' >> /tmp/art.sh"
+chmod +x /tmp/art.sh
+sh /tmp/art.sh
+
+https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1064/T1064.md
